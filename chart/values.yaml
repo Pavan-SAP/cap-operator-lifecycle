@@ -39,7 +39,7 @@ controller:
   replicas: 1
   image:
     # -- Image repository
-    repository: ghcr.io/sap/cap-operator/controller
+    repository: ghcr.io/pavan-sap/cap-operator/controller
     # -- Image tag
     tag: ""
     # -- Image pull policy
@@ -96,7 +96,7 @@ subscriptionServer:
   replicas: 1
   image:
     # -- Image repository
-    repository: ghcr.io/sap/cap-operator/server
+    repository: ghcr.io/pavan-sap/cap-operator/server
     # -- Image tag
     tag: ""
     # -- Image pull policy
@@ -174,7 +174,7 @@ webhook:
   replicas: 1
   image:
     # -- Image repository
-    repository: ghcr.io/sap/cap-operator/web-hooks
+    repository: ghcr.io/pavan-sap/cap-operator/web-hooks
     # -- Image tag
     tag: ""
     # -- Image pull policy
