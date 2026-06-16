@@ -37,7 +37,7 @@ jobs:
         echo "tag=$RELEASE_TAG_PREFIX/$chart_version" >> $GITHUB_OUTPUT
 
     - name: Wait for check suites to complete
-      uses: sap-contributions/await-check-suites@master
+      uses: sap-contributions/await-check-suites@esm
       with:
         ref: ${{ steps.get_target_commit.outputs.sha }}
         intervalSeconds: 10
