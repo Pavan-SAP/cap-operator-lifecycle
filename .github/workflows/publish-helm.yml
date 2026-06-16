@@ -63,8 +63,6 @@ jobs:
       contents: write
       pages: write
       id-token: write
-    environment:
-      name: Website-Helm
 
     steps:
     - name: Checkout repository
@@ -77,7 +75,6 @@ jobs:
       with:
         ref: website
         path: website
-        token: ${{ secrets.WEBSITE_HELM }}
 
     - uses: azure/setup-helm@v5
 
@@ -100,20 +97,6 @@ jobs:
         git commit -m "Add index.yaml to website"
         git push
         
-    - name: Upload package
-      run: |
-        upload_url="${{ needs.create_release_tag.outputs.upload_url }}"
-        upload_url=${upload_url%%\{*\}}
-        chart_name=$(yq .name $CHART_DIRECTORY/Chart.yaml)
-        chart_version=$(yq .version $CHART_DIRECTORY/Chart.yaml)
-        file=$chart_name-$chart_version.tgz
-        echo "Uploading $file to $upload_url ..."
-        curl -sSf \
-          -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ github.token }}" \
-          -H "Content-Type: $(file -b --mime-type $file)" \
-          --data-binary @$file \
-          "$upload_url?name=$(basename $file)"
 
   publish-to-packages:
     name: Publish chart to github packages
